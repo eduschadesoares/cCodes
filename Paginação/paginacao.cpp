@@ -85,7 +85,6 @@ void init(){
 		pag[i] = -1;
 		//cout << pag[i] << endl;
 	}
-
 	randomizaPaginas();
 }
 
@@ -136,7 +135,7 @@ int main(){
 	setlocale(LC_ALL, "Portuguese");
 	
 	init();
-	
+
 	criarEnderecos();
 
 	return 0;
