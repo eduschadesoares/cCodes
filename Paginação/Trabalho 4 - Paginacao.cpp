@@ -29,7 +29,7 @@ void erro(int val){
 
 bool confereSeJaFoiUsado(int valor){
 	for (int i=0; i<f; i++){
-		if (pagUsadas[i] == valor) return true; // p�gina já foi utilizada
+		if (pagUsadas[i] == valor) return true; // página já foi utilizada
 	}
 	return false; // página livre
 }
@@ -85,7 +85,7 @@ void paginacao(){
 	int m = 0, valor = 0, paginaX = 0, frameX = 0, deslocamento = 0;
 	while (m < n){
 	
-	// meu irmao, � aqui que a parada complica 
+	// meu irmao, é aqui que a parada complica 
 		for (int i = 0; i<n; i++){
 			valor = enderecos[i];
 			paginaX = valor / by;	
