@@ -12,8 +12,8 @@
 
 using namespace std;
 
-int n;
-int pag[p], frame[f] = {}, pagUsadas[f], enderecos[maxEnd];
+int n, endereco;
+int pag[p], frame[f] = {}, pagUsadas[f];
 
 
 
@@ -36,27 +36,56 @@ bool confereSeJaFoiUsado(int valor){
 	return false; // página livre
 }
 
+int random(int min, int max){
+   return min + rand() / (RAND_MAX / (max - min + 1) + 1);
+}
+
 void randomizaPaginas(){
-	for (int i = 0; i < f; i++){
-		frame[i] = i;
+	int randNum;
+	bool check;
+	srand(time(NULL));
+
+	//Vai inserir um valor no vetor pag sem repetição
+
+	int counter = 0, pos;
+	while(counter <= f) {
+	    pos = rand() % p;
+		if(pag[pos] == -1) {
+
+			do {
+				check = true;
+				randNum = random(0, f);
+				
+				for(int j = 0; j < p; j++) {
+					if(randNum == pag[j]) {
+						check = false;
+						break;
+					}
+				}
+
+			} while(!check);
+
+			pag[pos] = randNum;
+			counter += 1;
+		}
 	}
-	for (int i = 0; i < f; i++) {    // whoop hahah mistureba
-	    int temp = frame[i];
-	    int random = rand() % f;
-	    frame[i] = frame[random];
-	    frame[random] = temp;
+
+	for(int i = 0; i < p; i++) {
+		cout << pag[i] << endl;
 	}
 }
 
 void init(){
-	for (int i = 0; i < maxEnd; i++){
-		enderecos[i] = -1;
+	for(int i=0; i<f; i++){ //isso nem precisa na vdd
+		frame[i] = i;
+		//cout << frame[i] << endl;
 	}
-	
-	srand(time(NULL));
+
 	for(int i=0; i<p; i++){ //isso nem precisa na vdd
-		pag[i] = i;
+		pag[i] = -1;
+		//cout << pag[i] << endl;
 	}
+
 	randomizaPaginas();
 }
 
@@ -80,7 +109,8 @@ void criarEnderecos(){
 				goodbye();
 			} else {
 				for (int i = 0; i < n; i++) {    // whoop hahah mistureba
-		    		enderecos[i] = rand() % maxEnd;
+		    		endereco = rand() % maxEnd;
+					//paginacao(endereco);
 				}
 			}
 		}
@@ -90,13 +120,13 @@ void criarEnderecos(){
 	}*/
 }
 
-void paginacao(){
+void paginacao(int endereco){
 	int m = 0, valor = 0, paginaX = 0, frameX = 0, deslocamento = 0;
 	while (m < n){
 	
 	// meu irmao, é aqui que a parada complica 
 		for (int i = 0; i<n; i++){
-			valor = enderecos[i];
+			//valor = enderecos[i];
 			paginaX = valor / by;	
 		}
 	}
@@ -105,9 +135,8 @@ void paginacao(){
 int main(){
 	setlocale(LC_ALL, "Portuguese");
 	
-	//init();
+	init();
 	criarEnderecos();
-	//paginacao();
 
 	return 0;
 }
