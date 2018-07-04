@@ -24,10 +24,12 @@ int pag[p], frame[f] = {}, pagUsadas[f];
 int hitRatio = 0;
 int missRatio = 0;
 
+unsigned int enderecos; //Matheus stuff
+
 void print(const std::string& str) {
     for (size_t i = 0; i != str.size(); ++i) { 
-        cout << str[i];
-        usleep(20000);
+        std::cout << str[i];
+        usleep(2000);
     }
 }
 
@@ -117,11 +119,21 @@ void criarEnderecos(){
 			if (n == 0) {
 				goodbye();
 			} else {
-				for (int i = 0; i < n; i++) {    // whoop hahah mistureba
+				/*for (int i = 0; i < n; i++) {    // whoop hahah mistureba
 		    		endereco = rand() % maxEnd;
 					cout << "Endereço: " << endereco << " ";
 					paginacao(endereco);
-				}
+				} */
+
+				for(int i = 0; i < n; i++){
+						enderecos = rand() % 4194304;
+						paginacao(i);
+					}
+					cout << endl; print("\n\n\t Número de endereços: "); cout << n;
+					cout << endl; print("\t Número de Page Faults: "); cout << missRatio << endl;
+					print("\t Taxa de Hit e Miss "); cout << endl;
+					printf("\t %d (%d\%) Acertos\n\t %d (%d\%) Page Faults\n ", n - missRatio, 100 - (missRatio*100/n), missRatio, (missRatio*100/n));
+
 			}
 		}
 	}
@@ -130,21 +142,24 @@ void criarEnderecos(){
 	}*/
 }
 
-void paginacao(int endereco){
+/*void paginacao(int endereco){
 	// meu irmao, é aqui que a parada complica RSRSRS
 	//Vc pode fazer aquele cálculo deslocamento para cara endereço? eu n lembro =/
 	int primeiroBitPag = 0, paginaX = 0, frameX = 0, deslocamento = 0, primeiroBitFrame = 0;
 	int posFinalFrame = 0;
 
 	paginaX = endereco / by;
+
 	primeiroBitPag = paginaX * by;
 
-	deslocamento = endereco - primeiroBitPag; //Acho q é isso
+	deslocamento = endereco - primeiroBitPag;
 
 	frameX = pag[paginaX];
 
 	if(frameX == -1 ) {
-		cout << "PF" << endl;
+		//cout << "PF" << endl;
+		printf("\n Endereço virtual: %d, Página Virtual: %d, Página Real: PF, Deslocamento: %d", valor, paginaX, deslocamento);
+		
 		missRatio += 1;
 		return;
 	}
@@ -157,12 +172,53 @@ void paginacao(int endereco){
 	cout << "Frame: " << frameX << " ";
 	cout << "Endereço real: " << posFinalFrame << endl;
 	hitRatio += 1;
+}*/
+
+void converteBinario(int bits, int n) {
+    int binaryNum[1000] = {0};
+    int i = 0, aux;
+    while (n > 0) {
+        binaryNum[i] = n % 2;
+        n = n / 2;
+        i++;
+    }
+	aux = i;
+	while(aux < bits) {
+		cout << 0;
+		aux++;
+	}
+    for (int j = i - 1; j >= 0; j--) {
+		cout << binaryNum[j];
+	}
+    cout << " ";
+}
+ 
+
+void paginacao(int pos){
+	int paginaX = 0, frameX = 0, deslocamento = 0;
+	unsigned int valor = 0;
+	valor = enderecos;
+	paginaX = valor / by;
+	deslocamento = valor - (paginaX * by);
+	
+	if(pag[pos] == -1){
+		printf("\n EV: %7d (Pag: %3d Desl: %4d) - [ ", valor, paginaX, deslocamento);
+		converteBinario(9, paginaX);
+		converteBinario(13, deslocamento);
+		printf("] ER: Page Fault");
+		missRatio++;
+	}
+	else {
+		printf("\n EV: %7d (Pag: %3d Desl: %4d) - [ ", valor, paginaX, deslocamento);
+		converteBinario(9, paginaX);
+		converteBinario(13, deslocamento);
+		printf("] ER: %7d (Mol: %3d Desl: %4d) - [ ", (pag[pos] * by) + deslocamento, pag[pos], deslocamento);
+		converteBinario(8, pag[pos]);
+		converteBinario(13, deslocamento);
+		printf("]");
+	}
 }
 
-void ratio() {
-	cout << "Quantidade de acertos: " << hitRatio << endl;
-	cout << "Quantidade de erros: " << missRatio << endl;
-}
 
 int main(){
 	setlocale(LC_ALL, "Portuguese");
@@ -170,8 +226,6 @@ int main(){
 	init();
 
 	criarEnderecos();
-
-	ratio();
 
 	return 0;
 }
