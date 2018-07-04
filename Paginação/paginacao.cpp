@@ -76,9 +76,9 @@ void randomizaPaginas(){
 		}
 	}
 
-	/*for(int i = 0; i < p; i++) {
-		cout << pag[i] << endl;
-	}*/
+	for(int i = 0; i < p; i++) {
+		cout << pag[i] << " ";
+	}
 }
 
 void init(){
@@ -129,15 +129,28 @@ void criarEnderecos(){
 void paginacao(int endereco){
 	// meu irmao, é aqui que a parada complica RSRSRS
 	//Vc pode fazer aquele cálculo deslocamento para cara endereço? eu n lembro =/
-	int primeiroBitPag = 0, paginaX = 0, frameX = 0, deslocamento = 0;
+	int primeiroBitPag = 0, paginaX = 0, frameX = 0, deslocamento = 0, primeiroBitFrame = 0;
+	int posFinalFrame = 0;
 
 	paginaX = endereco / by;
 	primeiroBitPag = paginaX * by;
 
 	deslocamento = endereco - primeiroBitPag; //Acho q é isso
 
-	cout << "Pagina: " << paginaX << " ";
-	cout << "Deslocamento: " << deslocamento << endl;
+	frameX = pag[paginaX];
+
+	if(frameX == -1 ) {
+		cout << "PF" << endl;
+		return;
+	}
+
+	primeiroBitFrame = frameX * by;
+	posFinalFrame = primeiroBitFrame + deslocamento; 
+
+	cout << "Página: " << paginaX << " ";
+	cout << "Deslocamento: " << deslocamento << " ";
+	cout << "Frame: " << frameX << " ";
+	cout << "Endereço real: " << posFinalFrame << endl;
 
 }
 
