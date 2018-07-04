@@ -200,22 +200,27 @@ void paginacao(int pos){
 	valor = enderecos;
 	paginaX = valor / by;
 	deslocamento = valor - (paginaX * by);
-	
+	if(pag[pos] == -1) {
+		printf("\n Página %3d não está mapeada", paginaX);
+	} else {
+		printf("\n Página %3d mapeada na moldura %3d", paginaX, pag[pos]);
+	}
+
 	if(pag[pos] == -1){
 		printf("\n EV: %7d (Pag: %3d Desl: %4d) - [ ", valor, paginaX, deslocamento);
 		converteBinario(9, paginaX);
 		converteBinario(13, deslocamento);
-		printf("] ER: Page Fault");
+		printf("] \n ER: Page Fault\n");
 		missRatio++;
 	}
 	else {
 		printf("\n EV: %7d (Pag: %3d Desl: %4d) - [ ", valor, paginaX, deslocamento);
 		converteBinario(9, paginaX);
 		converteBinario(13, deslocamento);
-		printf("] ER: %7d (Mol: %3d Desl: %4d) - [ ", (pag[pos] * by) + deslocamento, pag[pos], deslocamento);
+		printf("] \n ER: %7d (Mol: %3d Desl: %4d) - [  ", (pag[pos] * by) + deslocamento, pag[pos], deslocamento);
 		converteBinario(8, pag[pos]);
 		converteBinario(13, deslocamento);
-		printf("]");
+		printf("]\n");
 	}
 }
 
