@@ -15,17 +15,19 @@ using namespace std;
 int n;
 int pag[p], frame[f] = {}, pagUsadas[f], enderecos[maxEnd];
 
+
+
 void print(const std::string& str) {
     for (size_t i = 0; i != str.size(); ++i) { 
-        std::cout << str[i];
+        cout << str[i];
         usleep(20000);
     }
 }
 
 void erro(int val){
-	print("Erro:");
+	cout << "Erro :/" << endl;
+	//print("Erro:\n");
 }
-/////////////////////////////////////
 
 bool confereSeJaFoiUsado(int valor){
 	for (int i=0; i<f; i++){
@@ -59,7 +61,8 @@ void init(){
 }
 
 void goodbye(){
-	system("cls");
+	//system("clear");
+	cout << "Falou!" << endl;
 	exit(1);
 }
 
@@ -67,18 +70,24 @@ void criarEnderecos(){
 	print("Insira a quantidade de endereços: ");
 	cin >> n;
 	
-	if(n > maxEnd) erro(2);
-	else if (n < 0) erro(1);
-	else if (n == 0) goodbye();
-	else {
-		for (int i = 0; i < n; i++) {    // whoop hahah mistureba
-		    enderecos[i] = rand() % maxEnd;
-		}	
+	if(n > maxEnd) {
+		erro(2);
+	} else {
+		if (n < 0) {
+			erro(1);
+		} else {
+			if (n == 0) {
+				goodbye();
+			} else {
+				for (int i = 0; i < n; i++) {    // whoop hahah mistureba
+		    		enderecos[i] = rand() % maxEnd;
+				}
+			}
+		}
 	}
-	
-	for (int i=0; i<n; i++){
-		printf(" %d, ", enderecos[i]);
-	}
+	/*for (int i=0; i<n; i++){
+		printf(" %d\n", enderecos[i]);
+	}*/
 }
 
 void paginacao(){
@@ -96,12 +105,11 @@ void paginacao(){
 int main(){
 	setlocale(LC_ALL, "Portuguese");
 	
-	init();
+	//init();
 	criarEnderecos();
-	paginacao();
+	//paginacao();
 
-
-	return 1;
+	return 0;
 }
 
 
