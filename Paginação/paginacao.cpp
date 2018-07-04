@@ -115,6 +115,7 @@ void criarEnderecos(){
 			} else {
 				for (int i = 0; i < n; i++) {    // whoop hahah mistureba
 		    		endereco = rand() % maxEnd;
+					cout << "Endereço: " << endereco << " ";
 					paginacao(endereco);
 				}
 			}
@@ -126,15 +127,16 @@ void criarEnderecos(){
 }
 
 void paginacao(int endereco){
+	// meu irmao, é aqui que a parada complica RSRSRS
+	//Vc pode fazer aquele cálculo deslocamento para cara endereço? eu n lembro =/
 	int m = 0, valor = 0, paginaX = 0, frameX = 0, deslocamento = 0;
-	while (m < n){
-	
-	// meu irmao, é aqui que a parada complica 
-		for (int i = 0; i<n; i++){
-			//valor = enderecos[i];
-			paginaX = valor / by;	
-		}
-	}
+
+	paginaX = endereco / by;
+
+	deslocamento = 
+
+	cout << "Pagina: " << paginaX << endl;	
+
 }
 
 int main(){
