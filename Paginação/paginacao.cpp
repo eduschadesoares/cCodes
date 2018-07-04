@@ -48,13 +48,13 @@ void randomizaPaginas(){
 	//Vai inserir um valor no vetor pag sem repetição
 
 	int counter = 0, pos;
-	while(counter <= f) {
+	while(counter <= f - 1) {
 	    pos = rand() % p;
 		if(pag[pos] == -1) {
 
 			do {
 				check = true;
-				randNum = random(0, f);
+				randNum = random(0, f - 1);
 				
 				for(int j = 0; j < p; j++) {
 					if(randNum == pag[j]) {
@@ -136,6 +136,7 @@ int main(){
 	setlocale(LC_ALL, "Portuguese");
 	
 	init();
+	
 	criarEnderecos();
 
 	return 0;
