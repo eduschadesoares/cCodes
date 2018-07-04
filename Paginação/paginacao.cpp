@@ -7,14 +7,13 @@
 
 #define p 512               // PÁGINAS
 #define f 256               // FRAMES
-#define by 8192 			// 8KB
+#define by 8192				// 8KB
 #define maxEnd 4194304      // 4MB
 
 using namespace std;
 
 int n, endereco;
 int pag[p], frame[f] = {}, pagUsadas[f];
-
 
 
 void print(const std::string& str) {
@@ -46,6 +45,7 @@ void randomizaPaginas(){
 	srand(time(NULL));
 
 	//Vai inserir um valor no vetor pag sem repetição
+	//Valor referente ao vetor frame
 
 	int counter = 0, pos;
 	while(counter <= f - 1) {
@@ -70,9 +70,9 @@ void randomizaPaginas(){
 		}
 	}
 
-	for(int i = 0; i < p; i++) {
+	/*for(int i = 0; i < p; i++) {
 		cout << pag[i] << endl;
-	}
+	}*/
 }
 
 void init(){
