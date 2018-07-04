@@ -10,6 +10,12 @@
 #define by 8192				// 8KB
 #define maxEnd 4194304      // 4MB
 
+void init();
+void paginacao(int);
+void criarEnderecos();
+void randomizaPaginas();
+void random(int);
+
 using namespace std;
 
 int n, endereco;
@@ -109,7 +115,7 @@ void criarEnderecos(){
 			} else {
 				for (int i = 0; i < n; i++) {    // whoop hahah mistureba
 		    		endereco = rand() % maxEnd;
-					//paginacao(endereco);
+					paginacao(endereco);
 				}
 			}
 		}
