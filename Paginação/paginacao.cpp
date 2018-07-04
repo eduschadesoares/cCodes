@@ -21,6 +21,8 @@ using namespace std;
 int n, endereco;
 int pag[p], frame[f] = {}, pagUsadas[f];
 
+int hitRatio = 0;
+int missRatio = 0;
 
 void print(const std::string& str) {
     for (size_t i = 0; i != str.size(); ++i) { 
@@ -76,9 +78,9 @@ void randomizaPaginas(){
 		}
 	}
 
-	for(int i = 0; i < p; i++) {
+	/*for(int i = 0; i < p; i++) {
 		cout << pag[i] << " ";
-	}
+	}*/
 }
 
 void init(){
@@ -101,6 +103,8 @@ void goodbye(){
 }
 
 void criarEnderecos(){
+
+	srand(time(NULL));
 	print("Insira a quantidade de endereços: ");
 	cin >> n;
 	
@@ -141,6 +145,7 @@ void paginacao(int endereco){
 
 	if(frameX == -1 ) {
 		cout << "PF" << endl;
+		missRatio += 1;
 		return;
 	}
 
@@ -151,7 +156,12 @@ void paginacao(int endereco){
 	cout << "Deslocamento: " << deslocamento << " ";
 	cout << "Frame: " << frameX << " ";
 	cout << "Endereço real: " << posFinalFrame << endl;
+	hitRatio += 1;
+}
 
+void ratio() {
+	cout << "Quantidade de acertos: " << hitRatio << endl;
+	cout << "Quantidade de erros: " << missRatio << endl;
 }
 
 int main(){
@@ -160,6 +170,8 @@ int main(){
 	init();
 
 	criarEnderecos();
+
+	ratio();
 
 	return 0;
 }
