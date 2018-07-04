@@ -5,10 +5,10 @@
 #include <cstdio>
 #include <ctime>
 
-#define p 512 //               paginas
-#define f 256 //               frames
-#define by 8192 //             8kb
-#define maxEnd 4194304 //      4MB
+#define p 512               // PÁGINAS
+#define f 256               // FRAMES
+#define by 8192 			// 8KB
+#define maxEnd 4194304      // 4MB
 
 using namespace std;
 
