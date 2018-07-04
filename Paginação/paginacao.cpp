@@ -129,13 +129,15 @@ void criarEnderecos(){
 void paginacao(int endereco){
 	// meu irmao, é aqui que a parada complica RSRSRS
 	//Vc pode fazer aquele cálculo deslocamento para cara endereço? eu n lembro =/
-	int m = 0, valor = 0, paginaX = 0, frameX = 0, deslocamento = 0;
+	int primeiroBitPag = 0, paginaX = 0, frameX = 0, deslocamento = 0;
 
 	paginaX = endereco / by;
+	primeiroBitPag = paginaX * by;
 
-	deslocamento = 
+	deslocamento = endereco - primeiroBitPag; //Acho q é isso
 
-	cout << "Pagina: " << paginaX << endl;	
+	cout << "Pagina: " << paginaX << " ";
+	cout << "Deslocamento: " << deslocamento << endl;
 
 }
 
