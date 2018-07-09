@@ -5,3 +5,4 @@ Some commands:
 g++ nomeArquivo.cpp -o nomeExecutavel
 ```
 
+
