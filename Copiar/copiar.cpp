@@ -49,8 +49,9 @@ void createFileFunction() {
 }
 
 void createFileSyscall() {
-    printf("Sys\n");
+    printf("\nCriando arquivos por syscall!\n\n");
 }
+
 void menu() {
     int choice;
     printf("1 - Criar os arquivos\n");
