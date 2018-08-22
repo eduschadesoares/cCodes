@@ -6,3 +6,5 @@ g++ nomeArquivo.cpp -o nomeExecutavel
 ```
 
 
+
+
