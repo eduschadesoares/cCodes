@@ -20,6 +20,8 @@ struct timeval tempo1, tempo2;
 struct timezone tzp;
 
 // Protótipos
+void copyFileFunction();
+void copyFileSyscall();
 void createFileFunction();
 void createFileSyscall();
 void fileFunctionCreator(int, int);
@@ -141,6 +143,8 @@ void menu() {
     int choice;
     printf("1 - Criar os arquivos por FUNÇÃO\n");
     printf("2 - Criar os arquivos por SYSCALL\n ");
+    printf("3 - Copiar os arquivos por FUNÇÃO\n");
+    printf("4 - Copiar os arquivos por SYSCALL\n ");
     cin >> choice;
     
     switch(choice) {
@@ -149,6 +153,12 @@ void menu() {
             break;
         case 2:
             createFileSyscall();
+            break;
+        case 3:
+            copyFileFunction();
+            break;
+        case 4:
+            copyFileSyscall();
             break;
         default:
             printf("Mano, ajuda ai\n");
