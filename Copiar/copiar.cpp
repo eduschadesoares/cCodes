@@ -1,3 +1,4 @@
+#include <fcntl.h>
 #include <iostream>
 #include <stdio.h>
 #include <stdlib.h>
@@ -9,6 +10,7 @@
 #include <unistd.h>
 
 // Constantes
+const char c = 'o';
 const int b = 1;
 const int Kb = 1024;
 const int Mb = 1024 * 1024;
@@ -21,6 +23,7 @@ struct timezone tzp;
 void createFileFunction();
 void createFileSyscall();
 void fileFunctionCreator(int, int);
+void fileSyscallCreator(int, int);
 void fileCreator();
 void menu();
 
@@ -60,13 +63,35 @@ void createFileFunction() {
 
 void createFileSyscall() {
     printf("\nCriando arquivos por syscall!\n\n");
+    for(int i=1; i<=4; i++) {
+        if(i == 1) { //b
+            printf("Criando %iº arquivo de 1b.\n", i);
+            fileSyscallCreator(i, b);
+            printf("Arquivo file%i.in criado!\n\n", i);
+        }
+        if (i == 2) { //Kb
+            printf("Criando %iº arquivo de 1Kb.\n", i);
+            fileSyscallCreator(i, Kb);
+            printf("Arquivo file%i.in criado!\n\n", i);
+        }
+        if (i == 3) { //Mb
+            printf("Criando %iº arquivo de 1Mb.\n", i);
+            fileSyscallCreator(i, Mb);
+            printf("Arquivo file%i.in criado!\n\n", i);
+        }
+        if (i == 4) { //Gb
+            printf("Criando %iº arquivo de 1Gb (Vai demorar um pouco!).\n", i);
+            fileSyscallCreator(i, Gb);
+            printf("Arquivo file%i.in criado!\n\n", i);
+        }
+    }
 }
 
 void fileFunctionCreator(int num, int size) {
     FILE* file;
     double tempo;    
     char fileName[64];
-    sprintf(fileName, "file%i.txt", num);
+    sprintf(fileName, "file%i.in", num);
 
     // Openning file
     file = fopen(fileName, "w");
@@ -74,7 +99,7 @@ void fileFunctionCreator(int num, int size) {
 
     gettimeofday(&tempo1, &tzp); // Start timing
 
-    for(int i=0; i < size; i++) fputc('o', file);
+    for(int i=0; i < size; i++) fputc(c, file);
 
     gettimeofday(&tempo2, &tzp); // End timing
 
@@ -87,10 +112,35 @@ void fileFunctionCreator(int num, int size) {
     printf("Tempo: %.30f\n", tempo);
 }
 
+void fileSyscallCreator(int num, int size) {
+    int file;
+    double tempo;    
+    char fileName[64];
+    sprintf(fileName, "SYSfile%i.in", num);
+
+    // Openning file
+    file = open(fileName, O_WRONLY| O_CREAT,S_IRUSR|S_IWUSR);
+
+
+    gettimeofday(&tempo1, &tzp); // Start timing
+
+    for(int i=0; i < size; i++) write(file, &c, 1);
+
+    gettimeofday(&tempo2, &tzp); // End timing
+
+
+    //Closing file
+    close(file);
+    
+    tempo = (double) (tempo2.tv_sec - tempo1.tv_sec) + (((double) (tempo2.tv_usec - tempo1.tv_usec)) / 1000000);
+
+    printf("Tempo: %.30f\n", tempo);
+}
+
 void menu() {
     int choice;
-    printf("1 - Criar os arquivos\n");
-    printf("2 - Copiar os arquivos\n");
+    printf("1 - Criar os arquivos por FUNÇÃO\n");
+    printf("2 - Criar os arquivos por SYSCALL\n ");
     cin >> choice;
     
     switch(choice) {
