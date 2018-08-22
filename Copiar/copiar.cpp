@@ -14,6 +14,8 @@ const int Mb = 1024 * 1024;
 const int Gb = 1024 * 1024 * 1024;
 
 // Protótipos
+void createFileFunction();
+void createFileSyscall();
 void menu();
 
 // C++ stuff
@@ -29,4 +31,16 @@ void menu() {
     printf("1 - Criar os arquivos\n");
     printf("2 - Copiar os arquivos\n");
     cin >> choice;
+    
+    switch(choice) {
+        case 1:
+            createFileFunction();
+            break;
+        case 2:
+            createFileSyscall();
+            break;
+        default:
+            printf("Mano, ajuda ai\n");
+            menu;
+            break;
 }
