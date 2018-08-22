@@ -20,7 +20,7 @@ struct timezone tzp;
 // Protótipos
 void createFileFunction();
 void createFileSyscall();
-void fileFunctionCreator(int);
+void fileFunctionCreator(int, int);
 void fileCreator();
 void menu();
 
