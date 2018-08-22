@@ -26,6 +26,13 @@ int main() {
     menu();
 }
 
+void createFileFunction() {
+    printf("Func\n");
+}
+
+void createFileSyscall() {
+    printf("Sys\n");
+}
 void menu() {
     int choice;
     printf("1 - Criar os arquivos\n");
@@ -41,6 +48,7 @@ void menu() {
             break;
         default:
             printf("Mano, ajuda ai\n");
-            menu;
+            menu();
             break;
-}
+    }
+}   
