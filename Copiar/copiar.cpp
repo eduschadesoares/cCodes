@@ -25,7 +25,7 @@ void copyFileSyscall();
 void createFileFunction();
 void createFileSyscall();
 void fileFunctionCopier(int);
-void fileSyscallCopier(int, int);
+void fileSyscallCopier(int);
 void fileFunctionCreator(int, int);
 void fileSyscallCreator(int, int);
 void fileCreator();
@@ -66,7 +66,29 @@ void copyFileFunction() {
 }
 
 void copyFileSyscall() {
-
+    printf("\nCopiando arquivos por syscall!\n\n");
+    for(int i=1; i<=4; i++) {
+        if(i == 1) { //b
+            printf("Copiando %iº arquivo de 1b.\n", i);
+            fileSyscallCopier(i);
+            printf("Arquivo file%i.in copiado!\n\n", i);
+        }
+        if (i == 2) { //Kb
+            printf("Copiando %iº arquivo de 1Kb.\n", i);
+            fileSyscallCopier(i);
+            printf("Arquivo file%i.in copiado!\n\n", i);
+        }
+        if (i == 3) { //Mb
+            printf("Copiando %iº arquivo de 1Mb.\n", i);
+            fileSyscallCopier(i);
+            printf("Arquivo file%i.in copiado!\n\n", i);
+        }
+        if (i == 4) { //Gb
+            printf("Copiando %iº arquivo de 1Gb (Vai demorar um pouco!).\n", i);
+            fileSyscallCopier(i);
+            printf("Arquivo file%i.in copiado!\n\n", i);
+        }
+    }
 }
 
 void createFileFunction() {
@@ -150,8 +172,34 @@ void fileFunctionCopier(int num) {
     printf("Tempo: %.30f\n", tempo);
 }
 
-void fileSyscallCopier(int num, int size) {
+void fileSyscallCopier(int num) {
+    int file, fileCopied;
+    double tempo;
+    char ch;
+    char fileName1[64];
+    char fileName2[64];
+    sprintf(fileName1, "SYSfile%i.in", num);
+    sprintf(fileName2, "file%i.out", num);
 
+    // Openning file
+    file = open(fileName1, O_RDONLY);
+    fileCopied = open(fileName2, O_WRONLY| O_CREAT,S_IRUSR|S_IWUSR);
+
+
+    gettimeofday(&tempo1, &tzp); // Start timing
+
+    while(read(file,&ch,1) == 1) write(fileCopied,&c,1);
+
+    gettimeofday(&tempo2, &tzp); // End timing
+    
+
+    //Closing file
+    close(file);
+    close(fileCopied);
+    
+    tempo = (double) (tempo2.tv_sec - tempo1.tv_sec) + (((double) (tempo2.tv_usec - tempo1.tv_usec)) / 1000000);
+
+    printf("Tempo: %.30f\n", tempo);
 }
 
 void fileFunctionCreator(int num, int size) {
