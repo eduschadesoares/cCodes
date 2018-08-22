@@ -27,7 +27,25 @@ int main() {
 }
 
 void createFileFunction() {
-    printf("Func\n");
+    printf("Criando arquivos por função\n");
+    for(int i=1; i<=4; i++) {
+        if(i == 1) {
+            printf("Criando %iº arquivo de 1b.\n", i);
+            printf("Arquivo file%i.in criado!\n", i);
+        }
+        if (i == 2) {
+            printf("Criando %iº arquivo de 1Kb.\n", i);
+            printf("Arquivo file%i.in criado!\n", i);
+        }
+        if (i == 3) {
+            printf("Criando %iº arquivo de 1Mb.\n", i);
+            printf("Arquivo file%i.in criado!\n", i);
+        }
+        if (i == 4) {  
+            printf("Criando %iº arquivo de 1Gb (Vai demorar um pouco!).\n", i);
+            printf("Arquivo file%i.in criado!\n", i);
+        }
+    }
 }
 
 void createFileSyscall() {
