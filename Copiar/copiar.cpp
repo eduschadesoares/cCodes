@@ -16,6 +16,8 @@ const int Gb = 1024 * 1024 * 1024;
 // Protótipos
 void createFileFunction();
 void createFileSyscall();
+void fileFunctionCreator(int);
+void fileCreator();
 void menu();
 
 // C++ stuff
@@ -29,20 +31,24 @@ int main() {
 void createFileFunction() {
     printf("\nCriando arquivos por função!\n\n");
     for(int i=1; i<=4; i++) {
-        if(i == 1) {
+        if(i == 1) { //b
             printf("Criando %iº arquivo de 1b.\n", i);
+            fileFunctionCreator(b);
             printf("Arquivo file%i.in criado!\n\n", i);
         }
-        if (i == 2) {
+        if (i == 2) { //Kb
             printf("Criando %iº arquivo de 1Kb.\n", i);
+            fileFunctionCreator(Kb);
             printf("Arquivo file%i.in criado!\n\n", i);
         }
-        if (i == 3) {
+        if (i == 3) { //Mb
             printf("Criando %iº arquivo de 1Mb.\n", i);
+            fileFunctionCreator(Mb);
             printf("Arquivo file%i.in criado!\n\n", i);
         }
-        if (i == 4) {  
+        if (i == 4) { //Gb
             printf("Criando %iº arquivo de 1Gb (Vai demorar um pouco!).\n", i);
+            fileFunctionCreator(Gb);
             printf("Arquivo file%i.in criado!\n\n", i);
         }
     }
@@ -50,6 +56,10 @@ void createFileFunction() {
 
 void createFileSyscall() {
     printf("\nCriando arquivos por syscall!\n\n");
+}
+
+void fileFunctionCreator(int size) {
+    printf("size: %i\n", size);
 }
 
 void menu() {
