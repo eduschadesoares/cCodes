@@ -19,6 +19,8 @@ const int Gb = 1024 * 1024 * 1024;
 struct timeval tempo1, tempo2;
 struct timezone tzp;
 
+int counter;
+
 // Protótipos
 void copyFileFunction();
 void copyFileSyscall();
@@ -67,7 +69,7 @@ void copyFileFunction() {
 
 void copyFileSyscall() {
     printf("\nCopiando arquivos por syscall!\n\n");
-    for(int i=1; i<4; i++) { // (<=)Right
+    for(int i=1; i<=4; i++) { // (<=)Right
         if(i == 1) { //b
             printf("Copiando %iº arquivo de 1b.\n", i);
             fileSyscallCopier(i);
@@ -119,7 +121,7 @@ void createFileFunction() {
 
 void createFileSyscall() {
     printf("\nCriando arquivos por syscall!\n\n");
-    for(int i=1; i<4; i++) { // (<=)Right
+    for(int i=1; i<=4; i++) { // (<=)Right
         if(i == 1) { //b
             printf("Criando %iº arquivo de 1b.\n", i);
             fileSyscallCreator(i, b);
@@ -178,8 +180,8 @@ void fileSyscallCopier(int num) {
     char ch;
     char fileName1[64];
     char fileName2[64];
-    sprintf(fileName1, "SYSfile%i.in", num);
-    sprintf(fileName2, "SYSfile%i.out", num);
+    sprintf(fileName1, "%iSYSfile%i.in", counter, num);
+    sprintf(fileName2, "%iSYSfile%i.out", counter, num);
 
     // Openning file
     file = open(fileName1, O_RDONLY);
@@ -231,7 +233,7 @@ void fileSyscallCreator(int num, int size) {
     int file;
     double tempo;    
     char fileName[64];
-    sprintf(fileName, "SYSfile%i.in", num);
+    sprintf(fileName, "%iSYSfile%i.in", counter, num);
 
     // Openning file
     file = open(fileName, O_WRONLY| O_CREAT,S_IRUSR|S_IWUSR);
@@ -265,12 +267,16 @@ void menu() {
             createFileFunction();
             break;
         case 2:
+            printf("Counter: ");
+            cin >> counter;
             createFileSyscall();
             break;
         case 3:
             copyFileFunction();
             break;
         case 4:
+            printf("Counter: ");
+            cin >> counter;
             copyFileSyscall();
             break;
         default:
