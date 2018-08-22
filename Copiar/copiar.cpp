@@ -67,7 +67,7 @@ void copyFileFunction() {
 
 void copyFileSyscall() {
     printf("\nCopiando arquivos por syscall!\n\n");
-    for(int i=1; i<=4; i++) {
+    for(int i=1; i<4; i++) { // (<=)Right
         if(i == 1) { //b
             printf("Copiando %iº arquivo de 1b.\n", i);
             fileSyscallCopier(i);
@@ -119,7 +119,7 @@ void createFileFunction() {
 
 void createFileSyscall() {
     printf("\nCriando arquivos por syscall!\n\n");
-    for(int i=1; i<=4; i++) {
+    for(int i=1; i<4; i++) { // (<=)Right
         if(i == 1) { //b
             printf("Criando %iº arquivo de 1b.\n", i);
             fileSyscallCreator(i, b);
@@ -179,7 +179,7 @@ void fileSyscallCopier(int num) {
     char fileName1[64];
     char fileName2[64];
     sprintf(fileName1, "SYSfile%i.in", num);
-    sprintf(fileName2, "file%i.out", num);
+    sprintf(fileName2, "SYSfile%i.out", num);
 
     // Openning file
     file = open(fileName1, O_RDONLY);
@@ -191,7 +191,7 @@ void fileSyscallCopier(int num) {
     while(read(file,&ch,1) == 1) write(fileCopied,&c,1);
 
     gettimeofday(&tempo2, &tzp); // End timing
-    
+
 
     //Closing file
     close(file);
@@ -255,9 +255,9 @@ void fileSyscallCreator(int num, int size) {
 void menu() {
     int choice;
     printf("1 - Criar os arquivos por FUNÇÃO\n");
-    printf("2 - Criar os arquivos por SYSCALL\n ");
+    printf("2 - Criar os arquivos por SYSCALL\n");
     printf("3 - Copiar os arquivos por FUNÇÃO\n");
-    printf("4 - Copiar os arquivos por SYSCALL\n ");
+    printf("4 - Copiar os arquivos por SYSCALL\n");
     cin >> choice;
     
     switch(choice) {
