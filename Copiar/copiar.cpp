@@ -15,7 +15,17 @@ const int Gb = 1024 * 1024 * 1024;
 // Protótipos
 void menu();
 
+// C++ stuff
+using namespace std;
+
 // The very beginning
 int main() {
     menu();
+}
+
+void menu() {
+    int choice;
+    printf("1 - Criar os arquivos\n");
+    printf("2 - Copiar os arquivos\n");
+    cin >> choice;
 }
