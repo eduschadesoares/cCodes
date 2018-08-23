@@ -164,8 +164,9 @@ void fileFunctionCopier(int num) {
     gettimeofday(&tempo2, &tzp); // End timing
 
 
-    //Closing file
+    //Closing files
     fclose(file);
+    // fclose(fileCopied);
 
     tempo = (double) (tempo2.tv_sec - tempo1.tv_sec) + (((double) (tempo2.tv_usec - tempo1.tv_usec)) / 1000000);
 
