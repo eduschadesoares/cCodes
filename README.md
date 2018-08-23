@@ -5,6 +5,10 @@ Some commands:
 g++ nomeArquivo.cpp -o nomeExecutavel
 ```
 
+------
+
+# [Copiar](https://github.com/eduschadesoares/cCodes/tree/master/Copiar)
+### *1B*, *1KB*, *1MB* and *1GB* file creator and copier
 
 
 
