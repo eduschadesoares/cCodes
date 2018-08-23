@@ -10,5 +10,9 @@ g++ nomeArquivo.cpp -o nomeExecutavel
 # [Copier](https://github.com/eduschadesoares/cCodes/tree/master/Copiar)
 * *1B*, *1KB*, *1MB* and *1GB* file creator and copier
 
+-----
+
+# [Paginator]()
+* A process pagination simulator
 
 
