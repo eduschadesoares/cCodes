@@ -7,7 +7,7 @@
 
 #define p 512               // PÁGINAS
 #define f 256               // FRAMES
-#define by 8192		    // 8KB
+#define by 8192	// 8KB
 #define maxEnd 4194304      // 4MB
 
 void init();
