@@ -14,5 +14,3 @@ g++ nomeArquivo.cpp -o nomeExecutavel
 
 # [Paginator](https://github.com/eduschadesoares/cCodes/tree/master/Paginator)
 * A process pagination simulator
-
-
