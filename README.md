@@ -14,3 +14,8 @@ g++ nomeArquivo.cpp -o nomeExecutavel
 
 # [Paginator](https://github.com/eduschadesoares/cCodes/tree/master/Paginator)
 * A process pagination simulator
+
+-----
+
+# [Files](https://github.com/eduschadesoares/cCodes/blob/master/Files/FilesType.cpp)
+* Filters the files in a directory by the type
