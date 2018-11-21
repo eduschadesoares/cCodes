@@ -2,8 +2,6 @@
 
 # C Codes
 
-#
-
 Some commands:
 ```commandline
 g++ nomeArquivo.cpp -o nomeExecutavel
